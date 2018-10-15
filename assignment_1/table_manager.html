@@ -2,15 +2,39 @@
 <head>
 <!-- CSS -->
 <style type="text/css">
+	h1 {
+		color: maroon;
+	}
+	body {
+		background-color: whitesmoke;
+	}
 	div {
 		margin-bottom: 20px;
+	}
+	table, th, td {
+		border: 1px solid black;
+	}
+	table {
+		border-collapse: collapse;
+	}
+	table {
+    width: 25%;
+	}
+	th {
+    height: 50px;
+	}
+
+	th, td {
+    padding: 15px;
+    text-align: left;
+    font-size:18px;
 	}
 </style>
 
 <!-- Data -->
 <script>
 
-// Don't copy this to any other places in this file. You can just use the "organizations" variable to do your assignment. 
+// Don't copy this to any other places in this file. You can just use the "organizations" variable to do your assignment.
 var organizations = [
 	 {
         "Region": "East Asia & Pacific",
@@ -19,7 +43,7 @@ var organizations = [
         "Organization Name": "200 Square",
         "Organization Type": "For-profit",
         "Sectors": "Housing, construction & real estate",
-        "Description": "200 Square is an online real estate agent in New Zealand.",        
+        "Description": "200 Square is an online real estate agent in New Zealand.",
         "City": "Wellington",
         "State/Region": "Wellington",
         "Founding Year": 2010,
@@ -34,7 +58,7 @@ var organizations = [
         "Organization Name": "21c Consultancy",
         "Organization Type": "For-profit",
         "Sectors": "IT and geospatial",
-        "Description": "21c is ICT innovation consultancy which advises international actors, institutions and governments around the world on technological trends which can affect the way they deliver services.",        
+        "Description": "21c is ICT innovation consultancy which advises international actors, institutions and governments around the world on technological trends which can affect the way they deliver services.",
         "City": "London",
         "State/Region": "",
         "Founding Year": 2015,
@@ -49,7 +73,7 @@ var organizations = [
         "Organization Name": "2GIS",
         "Organization Type": "For-profit",
         "Sectors": "IT and geospatial",
-        "Description": "2GIS is a city information service combined with a map. ",        
+        "Description": "2GIS is a city information service combined with a map. ",
         "City": "Novosibirsk",
         "State/Region": "Novosibirsk Oblast",
         "Founding Year": 1999,
@@ -64,7 +88,7 @@ var organizations = [
         "Organization Name": "2nd City Zoning",
         "Organization Type": "Nonprofit",
         "Sectors": "Housing, construction & real estate",
-        "Description": "An Open City App, 2nd City Zoning is an interactive map that lets you find out how your building is zoned, learn where to locate your business and explore zoning patterns throughout the city.",        
+        "Description": "An Open City App, 2nd City Zoning is an interactive map that lets you find out how your building is zoned, learn where to locate your business and explore zoning patterns throughout the city.",
         "City": "Chicago",
         "State/Region": "Illinois",
         "Founding Year": 2013,
@@ -94,7 +118,7 @@ var organizations = [
         "Organization Name": "360 Yield Center",
         "Organization Type": "For-profit",
         "Sectors": "Agriculture",
-        "Description": "Taking a 360-degree view of key yield-limiting variables, 360 Yield Center develops strategies for better-performing crops and better on-farm profits.",        
+        "Description": "Taking a 360-degree view of key yield-limiting variables, 360 Yield Center develops strategies for better-performing crops and better on-farm profits.",
         "City": "Morton",
         "State/Region": "Illinois",
         "Founding Year": 2014,
@@ -124,7 +148,7 @@ var organizations = [
         "Organization Name": "3Tier (Europe) ",
         "Organization Type": "For-profit",
         "Sectors": "Energy and climate",
-        "Description": "3TIER is a global environmental and industrial measurement company providing weather-driven renewable energy risk assessment and forecasting for wind, solar, and hydro power projects.",        
+        "Description": "3TIER is a global environmental and industrial measurement company providing weather-driven renewable energy risk assessment and forecasting for wind, solar, and hydro power projects.",
         "City": "Helsinki",
         "State/Region": "Uusimaa",
         "Founding Year": 2012,
@@ -139,7 +163,7 @@ var organizations = [
         "Organization Name": "5PSolutions",
         "Organization Type": "For-profit",
         "Sectors": "IT and geospatial",
-        "Description": "5PSolutions are artisans of mobile platforms.",       
+        "Description": "5PSolutions are artisans of mobile platforms.",
         "City": "Fairfax",
         "State/Region": "Virginia",
         "Founding Year": 2007,
@@ -154,7 +178,7 @@ var organizations = [
         "Organization Name": "AAA National",
         "Organization Type": "Other",
         "Sectors": "Transportation and logistics",
-        "Description": "AAA provides services such as travel, automotive, insurance, financial, and discounts.",        
+        "Description": "AAA provides services such as travel, automotive, insurance, financial, and discounts.",
         "City": "Irving",
         "State/Region": "Texas",
         "Founding Year": 1902,
@@ -184,7 +208,7 @@ var organizations = [
         "Organization Name": "ABRELATAM",
         "Organization Type": "Nonprofit",
         "Sectors": "Governance",
-        "Description": "ABRELATAM is an conference that seeks to accelerate the process of opening information through Open Data transparency and promote the Latin America.",        
+        "Description": "ABRELATAM is an conference that seeks to accelerate the process of opening information through Open Data transparency and promote the Latin America.",
         "City": "Santiago",
         "State/Region": "",
         "Founding Year": 2015,
@@ -192,7 +216,7 @@ var organizations = [
         "Type of Data Used": "",
         "profileID": "1687"
     }
-	
+
 ];
 </script>
 
@@ -200,14 +224,128 @@ var organizations = [
 
 <body>
 <!-- Feel free to add empty tags. Data shouldn't be here. -->
-	<div id="org_table"></div>
+	<center><h1>Organizations Data </h1> </center>
+	<div id="org_table">
+		<center> <table id="org_table1"> </table> </center>
+	</div>
 
 <script>
 // outputs the first item of the organizations array. Just for testing.
-// console.log(organizations[0]); 
+// console.log(organizations[0]);
 console.log("test");
 
-// Your JavaScript code goes here
+var x="Organization Type";
+
+//variables to store data
+var i=0;
+var non_profit_count=0;
+var less_than_10=0;
+var current_year=(new Date()).getFullYear();
+
+var region=0;
+var transportation=0;
+var it_sector=0;
+
+//looping through the array of objects
+for(i=0;i<organizations.length;i++)
+{
+    //checking for non profit organization
+    if(organizations[i]["Organization Type"]==="Nonprofit")
+    {
+        console.log(organizations[i]["Organization"]);
+        non_profit_count++;
+    }
+
+    //checking for the founding year less than 10 years
+    if(organizations[i]["Founding Year"])
+    {
+        var t= current_year-parseInt(organizations[i]["Founding Year"]);
+
+        if ( t <10)
+       less_than_10++;
+    }
+
+    //checking for north america region
+    if(organizations[i]["Region"]==="North America")
+    {
+        region++;
+    }
+
+    //checking for transportation
+    if(organizations[i]["Type of Data Used"])
+    {
+        var t2=organizations[i]["Type of Data Used"];
+
+        var n=t2.indexOf("Transportation");
+
+        if (n!==-1)
+        transportation++;
+    }
+
+    //checking for it sectors
+     if(organizations[i]["Sectors"])
+    {
+        var t3=organizations[i]["Sectors"];
+
+        var n=t3.indexOf("IT");
+
+        if (n!==-1)
+        it_sector++;
+    }
+}
+//getting the table by id
+var table=document.getElementById('org_table1');
+
+//creating table headers
+var header = table.createTHead();
+
+var row = header.insertRow(0);
+var cell = row.insertCell(0);
+cell.innerHTML = "<b>Parameters</b>";
+
+var cell2 = row.insertCell(1);
+cell2.innerHTML = "<b>Data</b>";
+
+//inserting the first row
+var row1=table.insertRow(1);
+var non_profit=row1.insertCell(0);
+var data_non_profit=row1.insertCell(1);
+
+non_profit.innerHTML="Non Profit Organizations";
+data_non_profit.innerHTML=non_profit_count;
+
+
+//inserting the second row
+var row2=table.insertRow(2);
+var label2=row2.insertCell(0);
+var data2=row2.insertCell(1);
+
+label2.innerHTML="Less than 10 years";
+data2.innerHTML=less_than_10;
+
+//inserting the third row
+var row3=table.insertRow(3);
+var label3=row3.insertCell(0);
+var data3=row3.insertCell(1);
+
+label3.innerHTML="North American Organization";
+data3.innerHTML=region;
+
+//inserting the fourth row
+var row4=table.insertRow(4);
+var label4=row4.insertCell(0);
+var data4=row4.insertCell(1);
+
+label4.innerHTML="Transportation";
+data4.innerHTML=transportation;
+
+//inserting the fifth row
+var row5=table.insertRow(5);
+var label5=row5.insertCell(0);
+var data5=row5.insertCell(1);
+
+label5.innerHTML="IT Sector";
+data5.innerHTML=it_sector;
 
 
 </script>
